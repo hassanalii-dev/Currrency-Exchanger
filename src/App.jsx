@@ -1,4 +1,6 @@
 import CurrencyConverter from "./components/CurrencyConverter";
+import Navbar from "./components/Navbar"
+import Navbar from "./components/Footer"
 
 function App() {
   return (
