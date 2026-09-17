@@ -70,7 +70,6 @@ function CurrencyConverter() {
       }
 
       const exchangeRate = data.conversion_rates[toCurrency];
-
       const convertedAmount = Number(amount) * exchangeRate;
 
       setResult(convertedAmount);
@@ -83,7 +82,7 @@ function CurrencyConverter() {
 
   if (loadingCurrencies) {
     return (
-      <p className="py-8 text-center text-sm text-slate-500">
+      <p className="py-8 text-center text-sm text-slate-400">
         Loading currencies...
       </p>
     );
@@ -94,7 +93,7 @@ function CurrencyConverter() {
       <form onSubmit={handleConvert} className="space-y-5">
 
         <div>
-          <label className="mb-2 block text-sm font-semibold text-slate-700">
+          <label className="mb-2 block text-sm font-medium text-slate-300">
             Amount
           </label>
 
@@ -105,12 +104,12 @@ function CurrencyConverter() {
             placeholder="Enter amount"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-800 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10"
+            className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-4 py-3 text-slate-100 placeholder-slate-500 outline-none transition focus:border-blue-500 focus:bg-slate-800 focus:ring-2 focus:ring-blue-500/10"
           />
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-semibold text-slate-700">
+          <label className="mb-2 block text-sm font-medium text-slate-300">
             From Currency
           </label>
 
@@ -120,10 +119,14 @@ function CurrencyConverter() {
               setFromCurrency(e.target.value);
               setResult(null);
             }}
-            className="w-full cursor-pointer rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10 sm:text-base"
+            className="w-full cursor-pointer rounded-xl border border-slate-700 bg-slate-800/80 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-blue-500 focus:bg-slate-800 focus:ring-2 focus:ring-blue-500/10 sm:text-base"
           >
             {currencies.map((currency) => (
-              <option key={currency} value={currency}>
+              <option
+                key={currency}
+                value={currency}
+                className="bg-slate-800 text-slate-100"
+              >
                 {currency}
               </option>
             ))}
@@ -131,7 +134,7 @@ function CurrencyConverter() {
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-semibold text-slate-700">
+          <label className="mb-2 block text-sm font-medium text-slate-300">
             To Currency
           </label>
 
@@ -141,10 +144,14 @@ function CurrencyConverter() {
               setToCurrency(e.target.value);
               setResult(null);
             }}
-            className="w-full cursor-pointer rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10 sm:text-base"
+            className="w-full cursor-pointer rounded-xl border border-slate-700 bg-slate-800/80 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-blue-500 focus:bg-slate-800 focus:ring-2 focus:ring-blue-500/10 sm:text-base"
           >
             {currencies.map((currency) => (
-              <option key={currency} value={currency}>
+              <option
+                key={currency}
+                value={currency}
+                className="bg-slate-800 text-slate-100"
+              >
                 {currency}
               </option>
             ))}
@@ -154,29 +161,29 @@ function CurrencyConverter() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] py-3.5 font-semibold text-white shadow-lg shadow-blue-900/30 transition-all duration-200 hover:from-[#3B82F6] hover:to-[#22D3EE] hover:active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
+          className="w-full rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] py-3.5 font-semibold text-white shadow-lg shadow-blue-900/30 transition-all duration-200 hover:from-[#3B82F6] hover:to-[#22D3EE] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {loading ? "Converting..." : "Convert Currency"}
         </button>
       </form>
 
       {error && (
-        <p className="mt-5 rounded-xl border border-red-200 bg-red-50 p-4 text-center text-sm text-red-600">
+        <p className="mt-5 rounded-xl border border-red-900/60 bg-red-950/40 p-4 text-center text-sm text-red-400">
           {error}
         </p>
       )}
 
       {result !== null && !error && (
-        <div className="mt-6 rounded-xl border border-blue-200 bg-blue-50 p-5 text-center">
-          <p className="text-sm font-medium text-slate-500">
+        <div className="mt-6 rounded-xl border border-blue-900/60 bg-blue-950/30 p-5 text-center">
+          <p className="text-sm font-medium text-slate-400">
             Converted Amount
           </p>
 
-          <h2 className="mt-2 break-words text-2xl font-bold text-slate-800 sm:text-3xl">
+          <h2 className="mt-2 break-words text-2xl font-bold text-slate-100 sm:text-3xl">
             {Number(result).toLocaleString(undefined, {
               maximumFractionDigits: 4,
             })}{" "}
-            <span className="text-blue-600">{toCurrency}</span>
+            <span className="text-cyan-400">{toCurrency}</span>
           </h2>
         </div>
       )}
