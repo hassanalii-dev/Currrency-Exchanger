@@ -91,7 +91,6 @@ function CurrencyConverter() {
   return (
     <div>
       <form onSubmit={handleConvert} className="space-y-5">
-
         <div>
           <label className="mb-2 block text-sm font-medium text-slate-300">
             Amount
@@ -181,7 +180,8 @@ function CurrencyConverter() {
 
           <h2 className="mt-2 break-words text-2xl font-bold text-slate-100 sm:text-3xl">
             {Number(result).toLocaleString(undefined, {
-              maximumFractionDigits: 4,
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
             })}{" "}
             <span className="text-cyan-400">{toCurrency}</span>
           </h2>
